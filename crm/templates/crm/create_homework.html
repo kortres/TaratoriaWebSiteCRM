@@ -1,0 +1,44 @@
+{% extends 'crm/sample.html' %}
+{% load static %}
+
+{% block title %}
+  Домашние задания
+{% endblock %}
+
+{% block content %}
+    <div class="mb-2 mb-md-0 text-center">
+    {% if request.user.is_authenticated and request.user.username == 'speech' %}
+            <form method="post">
+                {% csrf_token %}
+                <span class="text-danger">{{ error }}</span><br>
+                {% for el in form %}
+                    {{ el.label }}<br>
+                    {{ el }}<br>
+                {% endfor %}
+                <button class="btn btn-success" type="submit">Сохранить</button>
+            </form>
+        {% elif request.user.is_authenticated %}
+            <div class="text-center">
+                <p>У вас нет разрешения для просмотра этой страницы.</p>
+            </div>
+        {% else %}
+            <div class="text-center">
+                <p>Авторизуйтесь чтобы увидеть эту страницу.</p>
+                <a href="{% url 'login' %}" class="nav-link px-2 text-black text-center">Войти</a>
+            </div>
+        {% endif %}
+    </div>
+    <script>
+      $(function () {
+        $("#id_date_of_issue").datetimepicker({
+          format: 'd.m.Y H:i',
+        });
+      });
+
+      $(function () {
+        $("#id_last_update").datetimepicker({
+          format: 'd.m.Y H:i',
+        });
+      });
+    </script>
+{% endblock %}

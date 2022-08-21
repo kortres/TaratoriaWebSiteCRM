@@ -1,0 +1,93 @@
+{% extends 'website/sample.html' %}
+{% load static %}
+
+{% block title %}
+  Главная
+{% endblock %}
+
+{% block content %}
+   <div class="p-4 p-md-5 mb-4 text-black rounded shadow-lg text-center bg-light">
+    <div>
+      <h1 class="display-4 fst-italic fw-bolder">Таратория. Логопед. Педагог-психолог. Дубна.</h1>
+      <p class="lead my-3">"Единственная настоящая роскошь - это роскошь человеческого общения" (Антуан де Сент-Экзюпери).</p>
+    </div>
+  </div>
+
+  <div class="p-4 p-md-5 mb-4 text-black rounded shadow-lg text-center bg-light">
+        <h2 class="fw-bolder">Мастерская занимается развитием речи по трем направлениям:</h2>
+  </div>
+
+  <div class="d-flex flex-wrap justify-content-center text-center mx-2 text-black">
+    <div class="d-flex align-items-center border mb-2 px-2 pb-2 mx-2 rounded shadow-lg text-center bg-light" style="max-width: 35vh; min-height: 35vh">
+        <div class="d-flex row text-center">
+            <h3 class="fw-bolder">«ЛогоСад»</h3>
+            <p>Занятия для детей от 3 до 6 лет: запуск речи, коррекция звукопроизношения, логоритмика.</p>
+        </div>
+    </div>
+
+    <div class="d-flex align-items-center border mb-2 px-2 pb-2 mx-2 rounded shadow-lg text-center bg-light" style="max-width: 35vh; min-height: 35vh">
+        <div class="d-flex row text-center">
+            <h3 class="fw-bolder">«ЛогоШкола»</h3>
+            <p>Занятия для детей от 7 до 12 лет: коррекция звукопроизношения, работа с дислексией и дисграфией, основы правильной речи.</p>
+        </div>
+    </div>
+
+    <div class="d-flex align-items-center border mb-2 px-2 pb-2 mx-2 rounded shadow-lg text-center bg-light" style="max-width: 35vh; min-height: 35vh">
+        <div class="d-flex row text-center">
+            <h3 class="fw-bolder">«ЛогоКласс»</h3>
+            <p>Занятия и мастер классы для подростков и взрослых: основы сценической речи, ораторское мастерство, работа с дикцией, дыханием, голосом.</p>
+        </div>
+    </div>
+  </div>
+
+  <div class="container px-4 py-5">
+    <h2 class="pb-2 border-bottom text-center">Преимущества занятий у нас</h2>
+    <div class="d-flex flex-wrap align-items-center mb-2 px-2 pb-2 mx-2 justify-content-md-between">
+      <div class="col d-flex align-items-center rounded shadow-lg text-center mx-1 pb-2 px-1" style="max-width: 30vh; min-height: 7vh">
+        <div>
+          <h4 class="mb-0 text-center">Индивидуальный подход</h4>
+        </div>
+      </div>
+      <div class="col d-flex align-items-center rounded shadow-lg text-center mx-1 pb-2 px-1" style="max-width: 30vh; min-height: 7vh">
+        <div>
+          <h4 class="mb-0 text-center">Интергративный подход</h4>
+        </div>
+      </div>
+      <div class="col d-flex align-items-center rounded shadow-lg text-center mx-1 pb-2 px-1" style="max-width: 30vh; min-height: 7vh">
+        <div>
+          <h4 class="mb-0 text-center">Педагог-специалист в трех направлениях</h4>
+        </div>
+      </div>
+      <div class="col d-flex align-items-center rounded shadow-lg text-center mx-1 pb-2 px-1" style="max-width: 30vh; min-height: 7vh">
+        <div>
+          <h4 class="mb-0 text-center">Доступная цена на услуги</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container px-4 py-5" id="photo">
+    <h2 class="pb-2 border-bottom text-center">Фото с занятий</h2>
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg">
+              <img src="{% static 'website/img/1.png' %}" alt="">
+        </div>
+      </div>
+
+        <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg">
+              <img src="{% static 'website/img/2.png' %}" alt="">
+        </div>
+      </div>
+
+        <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg">
+              <img src="{% static 'website/img/3.png' %}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

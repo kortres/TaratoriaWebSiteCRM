@@ -1,0 +1,96 @@
+{% extends 'crm/sample.html' %}
+{% load static %}
+
+{% block title %}
+  Календарь занятий
+{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated and request.user.username == 'speech' %}
+        <div class="mb-2 px-2 pb-2 mx-2 text-center">
+            <form method="get">
+                <p class="mb-2 mb-md-0">Имя пользователя:</p>
+                {{ form.login }}
+                <p class="mb-2 mb-md-0">Первая дата:</p>
+                {{ form.first_data }}
+                <p class="mb-2 mb-md-0">Вторая дата:</p>
+                {{ form.second_data }}<br>
+                <button class="btn btn-success mt-3" type="submit">Готово</button>
+            </form>
+
+            <div class="text-center mt-2">
+                <a href="{% url 'create_calendar' %}" class="px-2 text-black" >Создать занятие</a>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center text-center mx-2">
+            {% for el in news %}
+                <div class="border mb-2 px-2 pb-2 mx-2">
+                     <p class="mb-2 mb-md-0">Название:</p>
+                    {{ el.class_name }}
+                    <p class="mb-2 mb-md-0">Имя:</p>
+                    {% for el2 in user %}
+                        {% if el2.id == el.login_id %}
+                            {{ el2.first_name }} {{ el2.last_name }}
+                        {% endif %}
+                    {% endfor %}
+                    <p class="mb-2 mb-md-0">Длительность занятия в часах:</p>
+                    {{ el.duration }}
+                    <p class="mb-2 mb-md-0">Дата проведения занятия:</p>
+                    {{ el.date_of_the_lesson }}
+                    <p class="mb-2 mb-md-0">Время начала занятия:</p>
+                    {{ el.time_of_the_lesson }}
+                    <p class="mb-2 mb-md-0">Цена:</p>
+                    {{ el.cash }}
+                    <p class="mb-2 mb-md-0">Статус:</p>
+                    {{ el.status }}<br>
+                    <a href="{% url 'calendar_update' el.id %}" class="btn btn-warning mb-2" style="min-width: 20vh">Изменить данные</a><br>
+                    <a href="{% url 'calendar_delete' el.id %}" class="btn btn-warning" style="min-width: 20vh">Удалить занятие</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% elif request.user.is_authenticated %}
+        <div class="d-flex flex-wrap justify-content-center text-center mx-2">
+            {% for el in news %}
+                <div class="border mb-2 px-2 pb-2 mx-2">
+                     <p class="mb-2 mb-md-0">Название:</p>
+                    {{ el.class_name }}
+                    <p class="mb-2 mb-md-0">Имя:</p>
+                    {% for el2 in user %}
+                        {% if el2.id == el.login_id %}
+                            {{ el2.first_name }} {{ el2.last_name }}
+                        {% endif %}
+                    {% endfor %}
+                    <p class="mb-2 mb-md-0">Длительность занятия в часах:</p>
+                    {{ el.duration }}
+                    <p class="mb-2 mb-md-0">Дата проведения занятия:</p>
+                    {{ el.date_of_the_lesson }}
+                    <p class="mb-2 mb-md-0">Время начала занятия:</p>
+                    {{ el.time_of_the_lesson }}
+                    <p class="mb-2 mb-md-0">Цена:</p>
+                    {{ el.cash }}
+                    <p class="mb-2 mb-md-0">Статус:</p>
+                    {{ el.status }}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+         <div class="text-center">
+                <p>Авторизуйтесь чтобы увидеть эту страницу</p>
+                <a href="{% url 'login' %}" class="nav-link px-2 text-black text-center">Войти</a>
+         </div>
+    {% endif %}
+    <script>
+      $(function () {
+        $("#id_first_data").datetimepicker({
+          format: 'Y-m-d',
+        });
+      });
+
+      $(function () {
+        $("#id_second_data").datetimepicker({
+          format: 'Y-m-d',
+        });
+      });
+    </script>
+{% endblock %}
+

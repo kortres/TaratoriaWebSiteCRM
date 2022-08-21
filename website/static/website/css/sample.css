@@ -1,0 +1,9 @@
+a{
+    text-decoration: none;
+
+}
+
+a:hover{
+    color: dodgerblue !important;
+    transition: 0.3s;
+}

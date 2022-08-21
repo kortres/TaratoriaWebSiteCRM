@@ -1,0 +1,29 @@
+{% extends 'crm/sample.html' %}
+{% load static %}
+
+{% block title %}
+  Профиль
+{% endblock %}
+
+{% block content %}
+    <div class="mb-2 mb-md-0 text-center">
+        {% if request.user.is_authenticated and request.user.username == 'speech' %}
+            <p>you don't have promotion for this page</p>
+        {% elif request.user.is_authenticated %}
+             <form method="post">
+                {% csrf_token %}
+                {% for el in form %}
+                    {{ el.label }}<br>
+                    {{ el }}<br>
+                {% endfor %}
+                <span>{{ error }}</span>
+                <button class="btn btn-success mt-3" type="submit">Сохранить</button>
+            </form>
+        {% else %}
+            <div class="text-center">
+                <p>Авторизуйтесь чтобы увидеть эту страницу</p>
+                <a href="{% url 'login' %}" class="nav-link px-2 text-black text-center">Войти</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'crm/sample.html' %}
+{% load static %}
+
+{% block title %}
+  Статистика
+{% endblock %}
+
+{% block content %}
+    <div class="mb-2 px-2 pb-2 mx-2 text-center">
+        <form method="GET">
+            <p>Выбирите первую дату:</p>
+            {{ form.first_data }}
+            <p>Выбирите вторую дату:</p>
+            {{ form.second_data }}<br>
+            <button class="btn btn-success mt-3" type="submit">Готово</button>
+        </form>
+    </div>
+
+     <div class="d-flex flex-column align-items-center text-center">
+        <div class="border mb-2" style="min-width: 32vh">
+            <p class="mb-1">Количество подопечных:</p>
+            {{ users_count.login__count }}
+        </div>
+        <div class="border mb-2" style="min-width: 32vh">
+            <p class="mb-1">Имена подопечных:</p>
+             {% for el in users %}
+                 {{ el.first_name }} {{ el.last_name }}<br>
+             {% endfor %}
+        </div>
+        <div class="border mb-2" style="min-width: 32vh">
+            <p class="mb-1">Количество часов:</p>
+            {{ hour.duration__sum }}
+        </div>
+        <div class="border mb-2" style="min-width: 32vh">
+            <p class="mb-1">Количество занятий:</p>
+            {{ classes_counts }}
+        </div>
+        <div class="border mb-2" style="min-width: 32vh">
+            <p class="mb-1">Суммарный доход:</p>
+            {{ cash_sum.cash__sum }}
+        </div>
+     </div>
+    <script>
+      $(function () {
+        $("#id_first_data").datetimepicker({
+          format: 'Y-m-d',
+        });
+      });
+
+      $(function () {
+        $("#id_second_data").datetimepicker({
+          format: 'Y-m-d',
+        });
+      });
+    </script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'crm/sample.html' %}
+{% load static %}
+
+{% block title %}
+  Главная
+{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <div class="d-flex flex-wrap justify-content-center">
+            <div class="mb-2 mb-md-0 text-center">
+                <p>Пароль успешно изменен !</p>
+            </div>
+        </div>
+    {% else %}
+        <div class="text-center">
+            <p>Авторизуйтесь чтобы увидеть эту страницу</p>
+            <a href="{% url 'login' %}" class="nav-link px-2 text-black text-center">Войти</a>
+        </div>
+    {% endif %}
+{% endblock %}

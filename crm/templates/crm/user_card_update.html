@@ -1,0 +1,86 @@
+{% extends 'crm/sample.html' %}
+{% load static %}
+
+{% block title %}
+  Карты подопечных
+{% endblock %}
+
+{% block content %}
+    <div class="mb-2 mb-md-0 text-center">
+        {% if request.user.is_authenticated and request.user.username == 'speech' %}
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-2 px-2 pb-2 mx-2 text-center">
+                    <span class="text-primary mb-2">{{ error }}</span>
+                    <p class="mb-2 mb-md-0">Название карты:</p>
+                    {{ form.card_name }}
+                    <p class="mb-2 mb-md-0">Дата осмотра:</p>
+                    {{ form.birthday }}
+                </div>
+
+                <div class="d-flex flex-wrap justify-content-center text-center mx-2">
+                    <div class="mx-3">
+                        <p>Заключение ПМПК:</p>
+                        {{ form.pmpk }}
+                    </div>
+                    <div class="mx-3">
+                        <p>Общее звучание речи:</p>
+                        {{ form.sound_of_speech }}
+                    </div>
+                    <div class="mx-3">
+                        <p>Строение и подвижность органов артикуляции:</p>
+                        {{ form.structure_and_mobility }}
+                    </div>
+                    <div class="mx-3">
+                        <p>Понимание речи:</p>
+                        {{ form.understanding }}
+                    </div>
+                    <div class="mx-3">
+                        <p>Состояние звукопроизношения:</p>
+                        {{ form.sound_state }}
+                    </div>
+                    <div class="mx-3">
+                        <p>Слоговая структура слова:</p>
+                        {{ form.structure_of_the_word }}
+                    </div>
+                    <div class="mx-3">
+                        <p>Характеристика словаря:</p>
+                        {{ form.dictionary_feature }}
+                    </div>
+                    <div class="mx-3">
+                        <p>Грамматический строй речи:</p>
+                        {{ form.grammatical_structure }}
+                    </div>
+                    <div class="mx-3">
+                        <p>Связная речь:</p>
+                        {{ form.connected_speech }}
+                    </div>
+                    <div class="mx-3">
+                        <p>Рекомендации:</p>
+                        {{ form.general_recommendations }}
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success" type="submit">Сохранить</button>
+                </div>
+
+                </form>
+        {% elif request.user.is_authenticated %}
+            <div class="text-center">
+                <p>У вас нет разрешения для просмотра этой страницы</p>
+            </div>
+        {% else %}
+            <div class="text-center">
+                <p>Авторизуйтесь чтобы увидеть эту страницу</p>
+                <a href="{% url 'login' %}" class="nav-link px-2 text-black text-center">Войти</a>
+            </div>
+        {% endif %}
+    </div>
+    <script>
+      $(function () {
+        $("#id_birthday").datetimepicker({
+          format: 'd.m.Y',
+        });
+      });
+    </script>
+{% endblock %}

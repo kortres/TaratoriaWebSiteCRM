@@ -1,0 +1,43 @@
+{% extends 'crm/sample.html' %}
+{% load static %}
+
+{% block title %}
+  Главная
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex flex-wrap justify-content-center">
+        <div class="mb-2 mb-md-0 text-center list-group" style="min-width: 40vh">
+            {% if request.user.is_authenticated and request.user.username == 'speech' %}
+
+                    <h1 class="text-center">Добро пожаловать</h1>
+                    <p class="text-center">Ваш логин:</p>
+                    <p class="text-center">{{ request.user }}</p>
+                    <a href="{% url 'user_card' %}" class=" list-group-item list-group-item-action px-2 text-black text-decoration-none">Карты подопечных</a>
+                    <a href="{% url 'calendar' %}" class="list-group-item list-group-item-action px-2 text-black text-decoration-none">Календарь занятий</a>
+                    <a href="{% url 'homework' %}" class="list-group-item list-group-item-action px-2 text-black text-decoration-none">Домашние задания</a>
+                    <a href="{% url 'statistics' %}" class="list-group-item list-group-item-action px-2 text-black text-decoration-none">Статисика</a>
+                    <a href="{% url 'user_profile' %}" class="list-group-item list-group-item-action px-2 text-black text-decoration-none">Модерация пользователей</a>
+                    <a href="{% url 'archive' %}" class="list-group-item list-group-item-action px-2 text-black text-decoration-none">Архив</a>
+                    <a href="{% url 'password_change' %}" class="list-group-item list-group-item-action px-2 text-black text-decoration-none">Смена пароля</a>
+
+
+            {% elif request.user.is_authenticated %}
+                <h1 class="text-center">Добро пожаловать</h1>
+                <p class="text-center">Ваш логин:</p>
+                <p class="text-center">{{ request.user }}</p>
+                <div class="mb-2 mb-md-0 border text-center list-group">
+                    <a href="{% url 'user_card' %}" class=" list-group-item list-group-item-action px-2 text-black text-decoration-none">Мои карты</a>
+                    <a href="{% url 'calendar' %}" class=" list-group-item list-group-item-action px-2 text-black text-decoration-none">Календарь занятий</a>
+                    <a href="{% url 'homework' %}" class=" list-group-item list-group-item-action px-2 text-black text-decoration-none">Домашние задания</a>
+                    <a href="{% url 'user_profile' %}" class=" list-group-item list-group-item-action px-2 text-black text-decoration-none">Мои данные</a>
+                </div>
+            {% else %}
+                <div class="text-center">
+                  <p>Авторизуйтесь чтобы увидеть эту страницу</p>
+                  <a href="{% url 'login' %}" class="nav-link px-2 text-black text-center">Войти</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

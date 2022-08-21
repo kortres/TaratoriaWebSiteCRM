@@ -1,0 +1,28 @@
+{% extends 'crm/sample.html' %}
+{% load static %}
+
+{% block title %}
+  Карты подопечных
+{% endblock %}
+
+{% block content %}
+    <div class="mb-2 mb-md-0 text-center">
+    {% if request.user.is_authenticated and request.user.username == 'speech' %}
+            <form method="post">
+                {% csrf_token %}
+                <h3>Вы уверены что хотите удалить карту ? </h3>
+                <button class="btn btn-success" style="min-width: 6vh" type="submit">Да</button>
+                <a href="{% url 'user_card' %}" class="btn btn-success" style="min-width: 6vh">Нет</a>
+            </form>
+        {% elif request.user.is_authenticated %}
+            <div class="text-center">
+                <p>У вас нет разрешения для просмотра этой страницы</p>
+            </div>
+        {% else %}
+            <div class="text-center">
+                <p>Авторизуйтесь чтобы увидеть эту страницу</p>
+                <a href="{% url 'login' %}" class="nav-link px-2 text-black text-center">Войти</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

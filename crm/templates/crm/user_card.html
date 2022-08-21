@@ -1,0 +1,35 @@
+{% extends 'crm/sample.html' %}
+{% load static %}
+
+{% block title %}
+  Карты подопечных
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex flex-wrap justify-content-center">
+        <div class="row mb-2 mb-md-0 text-center" style="max-width: 35vh">
+            {% if request.user.is_authenticated and request.user.username == 'speech' %}
+                <form method="get">
+                    <p>Выберите пользователя:</p>
+                    <p>{{ form.login }}</p>
+                    <button class ="btn btn-success mb-3" type="submit">Выбрать пользователя</button>
+                </form>
+                {% for el in news %}
+                    <a href="{% url 'user_card_details' el.id %}" class="btn btn-warning mb-2" style="min-width: 30vh">{{ el.card_name }}</a>
+                {% endfor %}
+                <div class="text-center">
+                    <a href="{% url 'create_user_card' %}" class=" px-2 text-black">Создать карту</a>
+                </div>
+            {% elif request.user.is_authenticated %}
+                {% for el in user_data %}
+                    <a href="{% url 'user_card_details' el.id %}" class="btn btn-warning mb-2" style="min-width: 30vh">{{ el.card_name }}</a>
+                {% endfor %}
+            {% else %}
+                <div class="text-center">
+                    <p>Авторизуйтесь чтобы увидеть эту страницу</p>
+                    <a href="{% url 'login' %}" class="nav-link px-2 text-black text-center">Войти</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
